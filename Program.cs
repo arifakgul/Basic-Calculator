@@ -4,9 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("*******************************");
+            Console.WriteLine("**************************************");
             Console.WriteLine("Basic Calculator(Press 'q' for quit.))");
-            Console.WriteLine("*******************************");
+            Console.WriteLine("**************************************");
 
             while (true)
             {
