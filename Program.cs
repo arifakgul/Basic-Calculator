@@ -1,77 +1,107 @@
-﻿namespace Calculator
+﻿using System;
+using System.Formats.Asn1;
+
+namespace Deneme
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("**************************************");
-            Console.WriteLine("Basic Calculator(Press 'q' for quit.))");
-            Console.WriteLine("**************************************");
+           Random random = new Random();
+           bool PlayAgain = true;
+           string player;
+           string computer;
+           string answer;
 
-            while (true)
-            {
-                Console.WriteLine("+,-,*,/:");
+           while(PlayAgain)
+           {
+                player = "";
+                computer = "";
+                answer = "";
 
-                string ope = Console.ReadLine();
-
-                if (ope == "q")
+                while (player != "ROCK" && player != "PAPER" && player != "SCISSORS")
                 {
-                    break;
-                }
-                
-                if (ope == "+")
-                {
-                    Console.WriteLine("1.Number:");
-                    double x = double.Parse(Console.ReadLine());
-                    Console.WriteLine("2.Number:");
-                    double y = double.Parse(Console.ReadLine());
-                    
-                    double sum = x + y;
-                    
-                    Console.WriteLine($"{x} + {y} = {sum}");
+                    Console.Write("Enter ROCK, PAPER or SCISSORS: ");
+                    player = Console.ReadLine();
+                    player = player.ToUpper();
                 }
 
-                else if (ope == "-")
+                switch (random.Next(1, 4))
                 {
-                    Console.WriteLine("1.Number:");
-                    double x = double.Parse(Console.ReadLine());
-                    Console.WriteLine("2.Number:");
-                    double y = double.Parse(Console.ReadLine());
-
-                    double sum = x - y;
-
-                    Console.WriteLine($"{x} - {y} = {sum}");
+                    case 1:
+                        computer = "ROCK";
+                        break;
+                    case 2:
+                        computer = "PAPER";
+                        break;
+                    case 3:
+                        computer = "SCISSORS";
+                        break;
                 }
 
-                else if (ope == "*")
-                {
-                    Console.WriteLine("1.Number:");
-                    double x = double.Parse(Console.ReadLine());
-                    Console.WriteLine("2.Number:");
-                    double y = double.Parse(Console.ReadLine());
-                    
-                    double sum = x * y;
-                    
-                    Console.WriteLine($"{x} * {y} = {sum}");
-                }
+                Console.WriteLine($"Player = {player}");
+                Console.WriteLine($"Computer = {computer}");
 
-                else if (ope == "/")
+                switch (player)
                 {
-                    Console.WriteLine("1.Number:");
-                    double x = double.Parse(Console.ReadLine());
-                    Console.WriteLine("2.Number:");
-                    double y = double.Parse(Console.ReadLine());
-                    
-                    double sum = x / y;
-                    
-                    Console.WriteLine($"{x} / {y} = {sum}");
+                    case "ROCK":
+                        if (computer == "ROCK")
+                        {
+                            Console.WriteLine("It's a draw");
+                        }
+                        else if (computer == "PAPER")
+                        {
+                            Console.WriteLine("Sory You Lose!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You Win");
+                        }
+                        break;
+                    case "PAPER":
+                        if (computer == "ROCK")
+                        {
+                            Console.WriteLine("You Win");
+                        }
+                        else if (computer == "PAPER")
+                        {
+                            Console.WriteLine("It's a draw");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You Lose!");
+                        }
+                        break;
+                    case "SCISSORS":
+                        if (computer == "ROCK")
+                        {
+                            Console.WriteLine("You Lose!");
+                        }
+                        else if (computer == "PAPER")
+                        {
+                            Console.WriteLine("You Win");
+                        }
+                        else
+                        {
+                            Console.WriteLine("It's a draw");
+                        }
+                        break;
                 }
+                Console.WriteLine("Do you want to exit ? (Y/N):");
+                answer = Console.ReadLine();
+                answer = answer.ToUpper();
 
+                if (answer == "Y")
+                {
+                    PlayAgain = true;
+                }
                 else
                 {
-                    Console.WriteLine("İnvalid transaction");
-                }
-            }
+                    PlayAgain = false;
+                }    
+           }
+           Console.WriteLine("See you later goodbye");    
         }
     }
 }
+    
